@@ -1,0 +1,38 @@
+<%- include("../partials/header.ejs") %>
+<!-- just declaring a ISO string variable for later use, no output -->
+<% const postISOString = new Date(post.publishedDate).toISOString() %>
+<div class="container">
+  <h2>Edit post</h2>
+  <form method="POST" action="/posts/<%= post.id %>?_method=PUT" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="headline" class="form-label">Headline:</label>
+      <input type="text" name="headline" class="form-control" value="<%= post.headline %>" />
+    </div>
+    <div class="mb-3">
+      <label for="featuredImage" class="form-label">Featured Image:</label>
+      <input type="file" name="featuredImage" class="form-control" accept="image/*"/>
+    </div>
+    <div class="mb-3">
+      <label for="author" class="form-label">Author:</label>
+      <input type="text" name="author" class="form-control" value="<%= post.author %>" />
+    </div>
+    <div class="mb-3">
+      <label for="publishedDate" class="form-label">Published Date:</label>
+      <!-- Convert the publishedDate to the right format for the datetime-local input -->
+      <input type="datetime-local" name="publishedDate" class="form-control" value="<%= postISOString.substring(0, postISOString.length - 1) %>" />
+    </div>
+    <div class="mb-3">
+      <label for="content" class="form-label">Content:</label>
+      <textarea name="content" class="form-control"><%= post.content %></textarea>
+    </div>
+    <div>
+      <input type="submit" class="btn btn-primary mb-3" value="Save post" />
+    </div>
+  </form>
+  <form method="POST" action="/posts/<%= post.id %>?_method=DELETE">
+    <div>
+      <input type="submit" class="btn btn-danger mb-3" value="Delete post" />
+    </div>
+  </form>
+</div>
+<%- include("../partials/footer.ejs") %>

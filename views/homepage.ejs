@@ -1,0 +1,27 @@
+<%- include("partials/header.ejs") %>
+  <div class="container">
+    <%- include("partials/alert.ejs") %>
+    <div class="row">
+      <div class="col-8">
+        <% if (mostRecentPost) { %>
+          <div class="mb-3">
+            <img src="<%= mostRecentPost.featuredImage %>" />
+          </div>
+          <h3><%= mostRecentPost.headline %></h3>
+          <h6>By: <%= mostRecentPost.author %></h6>
+          <h6>Published on: <%= mostRecentPost.publishedDate %></h6>
+          <p><%= mostRecentPost.content %></p>
+          <a href="/posts/<%= mostRecentPost.id %>/edit" class="btn btn-primary">Edit post</a>
+        <% } %>
+      </div>
+      <div class="col-4">
+        <h4>Other recent posts</h4>
+        <ul>
+          <% for (let post of nextRecentPosts) { %>
+            <li><a href="/posts/<%= post.id %>"><%= post.headline %></a></li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+  </div>
+<%- include("partials/footer.ejs") %>

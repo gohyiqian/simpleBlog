@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>Simple Blog</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+  </head>
+  <body style="padding-bottom: 100px;">
+    <div class="cover-container d-flex w-100 p-3 mx-auto flex-column">
+      <header class="mb-auto">
+        <div>
+          <h3 class="float-md-start mb-0">Simple Blog <% if (username) { %>- Welcome back <%= username %><% } %></h3>
+          <nav class="nav nav-masthead justify-content-center float-md-end">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+            <a class="nav-link" href="#">Features</a>
+            <a class="btn btn-primary" href="/posts/new">Create Post</a>
+            <% if (username) { %>
+              <a class="btn btn-secondary" href="/users/logout">Logout</a>
+            <% } else { %>
+              <a class="btn btn-secondary" href="/users/signup">Sign up</a>
+              <a class="btn btn-secondary" href="/users/login">Login</a>
+            <% } %>
+          </nav>
+        </div>
+      </header>
+      <div class="px-4 py-5 my-5 text-center">
+        <h1 class="display-5 fw-bold">Zhiquan's Home Page</h1>
+      </div>
+    </div>
