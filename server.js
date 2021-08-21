@@ -31,7 +31,7 @@ app.use(methodOverride("_method"));
 
 app.use(
   session({
-    secret: "SomeRANdOmSeCRet",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
   })
