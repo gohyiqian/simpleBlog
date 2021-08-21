@@ -2,6 +2,7 @@ const express = require("express");
 const session = require("express-session");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
+require("dotenv").config();
 
 const homepageController = require("./controllers/homepageController");
 const postsController = require("./controllers/postsController");
@@ -9,7 +10,7 @@ const testingController = require("./controllers/testingController");
 const userController = require("./controllers/userController");
 
 // set up database connection
-const mongoURI = "mongodb://localhost:27017/simpleblogdb";
+const mongoURI = process.env.MONGO_URI;
 const dbConnection = mongoose.connection;
 
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -52,7 +53,7 @@ app.use("*", (req, res) => {
   res.send("Page is not foundddd");
 });
 
-const server = app.listen(3000);
+const server = app.listen(process.env.PORT);
 
 process.on("SIGTERM", () => {
   console.log("My process is exiting");
